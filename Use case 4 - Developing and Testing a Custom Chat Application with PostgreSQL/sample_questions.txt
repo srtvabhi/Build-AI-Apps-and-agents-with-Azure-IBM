@@ -1,6 +1,8 @@
 Show the tables available in the database.
-How many records are stored in each business table?
-Summarize monthly sales for the last six months.
-Which five products generated the most revenue?
-Show the number of support cases by status and priority.
-What is the average order value by customer segment?
+Show all customers and their cities.
+Show every order with the customer name and product name.
+How many orders are there for each order status?
+Show all pending orders with customer, product, quantity, and order value.
+Calculate the total order value for each customer.
+Which products have the highest total ordered quantity?
+Calculate the total value of completed orders.
