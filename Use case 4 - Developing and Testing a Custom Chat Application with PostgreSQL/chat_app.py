@@ -61,7 +61,7 @@ def call_tool(name, arguments):
     return {"error": "Unknown tool"}
 
 
-def ask_agent(client, question, previous_response_id=None):
+def get_chat_response(client, question, previous_response_id=None):
     request = {
         "model": AZURE_OPENAI_DEPLOYMENT,
         "instructions": INSTRUCTIONS,
@@ -101,7 +101,7 @@ def ask_agent(client, question, previous_response_id=None):
             tools=TOOLS,
         )
 
-    return "The agent exceeded the tool-call limit.", response.id
+    return "The request exceeded the tool-call limit.", response.id
 
 
 def main():
@@ -121,10 +121,10 @@ def main():
             continue
 
         try:
-            answer, previous_response_id = ask_agent(
+            answer, previous_response_id = get_chat_response(
                 client, question, previous_response_id
             )
-            print(f"\nAgent > {answer}\n")
+            print(f"\nAssistant > {answer}\n")
         except Exception as error:
             print(f"\nError: {error}\n")
 
