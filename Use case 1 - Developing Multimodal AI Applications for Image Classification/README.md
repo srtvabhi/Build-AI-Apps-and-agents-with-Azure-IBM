@@ -14,19 +14,37 @@ returns `other`. The predicted label is printed directly in the terminal.
 
 ## Architecture
 
-```mermaid
-flowchart LR
-    A[User runs command] --> B[Python application]
-    B --> C{Image exists and<br/>has an image MIME type?}
-    C -- No --> D[Display input error]
-    C -- Yes --> E[Read image bytes]
-    E --> F[Convert to Base64 data URL]
-    F --> G[Build prompt with 20 labels]
-    G --> H[Azure OpenAI GPT-4o]
-    H --> I[Normalize model response]
-    I --> J{Label is allowed?}
-    J -- Yes --> K[Print predicted label]
-    J -- No --> L[Print other]
+```text
+User runs the command with an image path
+    |
+    v
+Python image-classification application
+    |
+    v
+Validate that the file exists and has an image MIME type
+    |
+    +-- Invalid image --> Display an input error and stop
+    |
+    +-- Valid image
+            |
+            v
+        Read image bytes
+            |
+            v
+        Convert image to a Base64 data URL
+            |
+            v
+        Build the prompt with 20 approved labels
+            |
+            v
+        Azure OpenAI GPT-5 deployment
+            |
+            v
+        Normalize and validate the model response
+            |
+            +-- Approved label --> Print the predicted label
+            |
+            +-- Any other value --> Print "other"
 ```
 
 ## Project structure

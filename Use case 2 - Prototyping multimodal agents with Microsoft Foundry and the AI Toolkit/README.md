@@ -40,20 +40,34 @@ Contoso Corporation needs an AI-powered IT support agent. The agent must:
 
 ## Architecture
 
-```mermaid
-flowchart LR
-    U[Employee or developer] --> P[Foundry Agent Playground]
-    U --> V[VS Code Python application]
-    P --> A[IT Support Agent]
-    V --> S[Microsoft Foundry Python SDK]
-    S --> A
-    A --> M[Deployed language model]
-    A --> F[File Search]
-    F --> D[IT_Policy.txt]
-    A --> C[Code Interpreter]
-    C --> CSV[system_performance.csv]
-    C --> O[Analysis and charts]
-    A --> R[Grounded response]
+```text
+Employee or Developer
+    |
+    +-- Microsoft Foundry Agent Playground -----------+
+    |                                                  |
+    +-- VS Code Python Application                     |
+            |                                          |
+            v                                          |
+        Microsoft Foundry Python SDK ------------------+
+                                                       |
+                                                       v
+                                               IT Support Agent
+                                                       |
+                 +-------------------------------------+------------------+
+                 |                                     |                  |
+                 v                                     v                  v
+        Deployed Language Model                  File Search       Code Interpreter
+                                                       |                  |
+                                                       v                  v
+                                                 IT_Policy.txt   system_performance.csv
+                                                                          |
+                                                                          v
+                                                               Analysis and Charts
+
+All agent components
+    |
+    v
+Grounded IT Support Response
 ```
 
 ## Prerequisites
