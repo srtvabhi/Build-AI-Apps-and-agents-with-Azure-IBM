@@ -16,7 +16,7 @@ from openai import OpenAI
 # Azure OpenAI credentials
 AZURE_OPENAI_ENDPOINT = "https://YOUR-RESOURCE.openai.azure.com/openai/v1"
 AZURE_OPENAI_KEY = "YOUR_AZURE_OPENAI_KEY"
-AZURE_OPENAI_DEPLOYMENT = "gpt-4o"
+AZURE_OPENAI_DEPLOYMENT = "gpt-5"
 
 # Predefined categories
 LABELS = [
@@ -92,7 +92,7 @@ def classify_image(image_path: str) -> str:
                 ],
             },
         ],
-        max_tokens=10,
+        max_completion_tokens=1000,
     )
 
     label = response.choices[0].message.content or "other"

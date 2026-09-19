@@ -1,6 +1,6 @@
 # Use Case 1: Multimodal Image Classification
 
-This lab uses an Azure OpenAI `gpt-4o` deployment to classify a local image
+This lab uses an Azure OpenAI `gpt-5` deployment to classify a local image
 into one of 20 predefined categories. If no category matches, the application
 returns `other`. The predicted label is printed directly in the terminal.
 
@@ -59,7 +59,7 @@ The following constants identify the Azure OpenAI resource and deployment:
 ```python
 AZURE_OPENAI_ENDPOINT = "https://YOUR-RESOURCE.openai.azure.com/openai/v1"
 AZURE_OPENAI_KEY = "YOUR_AZURE_OPENAI_KEY"
-AZURE_OPENAI_DEPLOYMENT = "gpt-4o"
+AZURE_OPENAI_DEPLOYMENT = "gpt-5"
 ```
 
 Replace the endpoint and key placeholders with your Azure values before
@@ -74,7 +74,7 @@ to `other`.
 ### 4. API client
 
 `OpenAI(base_url=..., api_key=...)` connects the OpenAI Python SDK to the Azure
-OpenAI v1 endpoint. API requests use the `gpt-4o` deployment name as the model.
+OpenAI v1 endpoint. API requests use the `gpt-5` deployment name as the model.
 
 ### 5. `image_to_data_url()`
 
@@ -91,7 +91,8 @@ This function:
 This function converts the image, joins the allowed labels into the prompt,
 and sends a multimodal Chat Completions request. The user message contains both
 text instructions and the Base64 image. `detail: auto` lets the model select
-the appropriate image processing detail.
+the appropriate image processing detail. `max_completion_tokens=1000` leaves
+enough room for GPT-5's non-visible reasoning tokens and the visible label.
 
 The returned text is normalized to lowercase and stripped of unexpected
 punctuation. The final validation prevents any value outside `LABELS`; an
@@ -148,7 +149,7 @@ deactivate
 - **Image not found:** Check the filename and relative path.
 - **Unsupported image:** Use PNG, JPEG, WEBP, or a non-animated GIF.
 - **401/unauthorized:** Verify the Azure OpenAI API key.
-- **404/deployment not found:** Verify the endpoint and `gpt-4o` deployment.
+- **404/deployment not found:** Verify the endpoint and `gpt-5` deployment.
 - **ModuleNotFoundError:** Activate `.venv` and reinstall `requirements.txt`.
 
 ## Reference
