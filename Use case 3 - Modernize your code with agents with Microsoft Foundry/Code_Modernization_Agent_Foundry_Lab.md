@@ -168,20 +168,24 @@ Enable:
 
 # Task 7: Test the Agent
 
-Use the supported C# sample file at `samples/legacy_customer_service.cs`, or
+Use the supported Python sample file at `samples/legacy_customer_service.py`, or
 paste its contents into the playground.
 
 Sample Code:
 
-```csharp
-public class CustomerService
-{
-    public ArrayList GetCustomers()
-    {
-        ArrayList customers = new ArrayList();
-        return customers;
-    }
-}
+```python
+def process_return_request(email, order_number, requested_items, reason, notes):
+    customer = find_customer(email)
+    order = load_order(order_number)
+    errors = validate_return(customer, order, requested_items, reason)
+    if errors:
+        return {"success": False, "errors": errors}
+
+    refund = calculate_refund(customer, order, requested_items, reason)
+    case_number = create_support_case(customer, order, reason, notes, refund)
+    update_inventory_and_order(order, requested_items)
+    refund_reference = issue_refund(customer, order, refund, case_number)
+    return {"success": True, "refund_reference": refund_reference}
 ```
 
 Prompt:
@@ -257,7 +261,7 @@ Score the responses using `evaluation_checklist.md`.
 - `README.md` - complete portal workflow and architecture
 - `agent_instructions.md` - production-oriented agent instructions
 - `knowledge/*.md` - five grounding documents in supported format
-- `samples/legacy_customer_service.cs` - legacy source-code sample
+- `samples/legacy_customer_service.py` - realistic legacy retail returns sample
 - `test_scenarios.md` - repeatable test prompts
 - `evaluation_checklist.md` - objective scoring rubric
 

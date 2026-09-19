@@ -2,16 +2,17 @@
 
 ## Scenario 1: Complete modernization assessment
 
-Attach or paste `samples/legacy_customer_service.cs`, then ask:
+Attach or paste `samples/legacy_customer_service.py`, then ask:
 
 ```text
 Analyze this code and provide a complete modernization report. Ground your
-recommendations in the uploaded enterprise standards. Include refactored .NET 8
+recommendations in the uploaded enterprise standards. Include modern Python
 code, unit tests, a phased migration roadmap, risks, and rollback guidance.
 ```
 
-Expected themes include generic collections, explicit customer types, behavior
-preservation, tests, and an incremental migration plan.
+Expected themes include separation of concerns, parameterized database access,
+transaction safety, decimal currency handling, structured logging, privacy,
+dependency injection, tests, and an incremental migration plan.
 
 ## Scenario 2: Security review
 

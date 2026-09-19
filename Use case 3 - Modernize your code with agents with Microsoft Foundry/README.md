@@ -9,6 +9,15 @@ Build a grounded agent that can analyze legacy source code, explain behavior,
 identify technical debt and security risks, propose modern code, generate unit
 tests, and produce a phased migration roadmap.
 
+## Sample business problem
+
+The included Python application represents a legacy retail customer-service
+workflow. It validates product returns, calculates refunds, creates support
+cases, updates inventory, writes operational logs, sends a simulated customer
+notification, and exports a daily report. The sample deliberately contains
+legacy design and implementation issues for the agent to identify and improve;
+do not connect it to production systems or real customer data.
+
 ## Architecture
 
 ```text
@@ -53,7 +62,7 @@ knowledge/
   java_modernization_guide.md
   python_coding_standards.md
 samples/
-  legacy_customer_service.cs
+  legacy_customer_service.py
 evaluation_checklist.md
 test_scenarios.md
 ```
@@ -76,7 +85,7 @@ Use the files in `samples/` and the prompts in `test_scenarios.md` for testing.
 8. Upload all five `.md` files from `knowledge/` and wait for indexing.
 9. Enable **Web Search** if it is available and permitted by your organization.
 10. Save the agent.
-11. Copy the code from `samples/legacy_customer_service.cs` into the playground
+11. Attach or paste `samples/legacy_customer_service.py` into the playground
     and use the modernization prompt from `test_scenarios.md`.
 12. Score the response using `evaluation_checklist.md`.
 
@@ -99,7 +108,7 @@ Every full modernization response should contain:
 
 - Each file must remain under 200 MB and 2 million tokens.
 - A knowledge source can contain up to 10,000 files.
-- This lab uses `.md` and `.cs`, both supported by the agent.
+- This lab uses `.md` and `.py`, both supported by the agent.
 - Do not upload secrets, passwords, access tokens, connection strings, private
   source code, or customer data.
 
