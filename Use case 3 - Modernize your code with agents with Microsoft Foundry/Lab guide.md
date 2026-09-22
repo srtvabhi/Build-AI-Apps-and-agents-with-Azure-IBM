@@ -3,6 +3,13 @@
 This is a portal-only lab. It creates one Code Modernization Agent in the
 Microsoft Foundry portal; no Python SDK application is required.
 
+## Launch the lab
+
+Before starting this use case, launch the following lab from your training
+portal:
+
+**Build AI agents with portal and VS Code**
+
 ## Objective
 
 Build a grounded agent that can analyze legacy source code, explain behavior,
