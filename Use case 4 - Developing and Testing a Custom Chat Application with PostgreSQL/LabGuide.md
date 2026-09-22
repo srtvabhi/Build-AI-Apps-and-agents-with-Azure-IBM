@@ -1,4 +1,4 @@
-# Use Case 4: Developing and Testing a Custom Chat Application with PostgreSQL
+# Use Case 4:(Demo) Developing and Testing a Custom Chat Application with PostgreSQL
 
 ## Objective
 
@@ -49,7 +49,7 @@ chat_app.py
 database.py
 requirements.txt
 sample_questions.txt
-README.md
+LabGuide.md
 ```
 
 ---
