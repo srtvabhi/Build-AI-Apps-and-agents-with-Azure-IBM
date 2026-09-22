@@ -1,4 +1,3 @@
-# [Build AI agents with portal and VS Code](https://gsi.learnondemand.net/Lab/81350?instructionSetLang=en&classId=770602)
 
 ## Use Case 2: Prototyping multimodal agents with Microsoft Foundry and the AI Toolkit
 
@@ -11,6 +10,13 @@ Estimated duration: **45 minutes**
 
 > Some Microsoft Foundry features used in this exercise may be in preview or
 > active development. Portal labels and extension behavior can change.
+
+## Launch the lab
+
+Before starting this use case, launch the following lab from your training
+portal:
+
+**Build AI agents with portal and VS Code**
 
 ## Objectives
 
