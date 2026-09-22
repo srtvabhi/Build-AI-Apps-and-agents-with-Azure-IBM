@@ -89,13 +89,12 @@ knowledge/
   python_coding_standards.md
 samples/
   legacy_customer_service.py
-evaluation_checklist.md
 ```
 
 - Upload only the five files in `knowledge/` as agent knowledge sources.
 - Use `samples/legacy_customer_service.py` as the code-analysis input.
-- Use `evaluation_checklist.md` to score the final responses.
-- The agent instructions and all test prompts are included in this guide.
+- The agent instructions, test prompts, and evaluation checklist are included in
+  this guide.
 
 ## Prerequisites
 
@@ -432,25 +431,57 @@ For every finding, verify that the agent supplies:
 
 The agent can generate a draft evaluation, but its self-score is not an
 independent quality decision. A learner, instructor, or code reviewer must
-verify the cited evidence and enter the final scores in the checklist.
+verify the cited evidence and approve the final scores.
 
-1. Open `evaluation_checklist.md`.
-2. Ask the agent to generate a complete draft checklist:
+Use this scoring scale:
+
+- **0:** Missing or materially incorrect.
+- **1:** Partially correct or insufficiently supported.
+- **2:** Complete, accurate, and supported.
+
+### Evaluation checklist
+
+| Criterion | Score | Evidence |
+|---|---:|---|
+| Correctly explains current code behavior |  |  |
+| Identifies language, runtime, dependencies, and assumptions |  |  |
+| Separates architecture, maintainability, security, and performance findings |  |  |
+| Assigns defensible severity to security findings |  |  |
+| Cites uploaded filename and heading for grounded recommendations |  |  |
+| Distinguishes enterprise policy, web guidance, and assumptions |  |  |
+| Refactored code preserves documented behavior |  |  |
+| Proposed code follows the relevant modernization standard |  |  |
+| Tests cover success, boundary, and failure paths |  |  |
+| Roadmap is phased and identifies dependencies |  |  |
+| Includes measurable validation and rollback criteria |  |  |
+| Does not expose or reproduce secrets |  |  |
+
+Maximum score: **24**
+
+### Evaluation procedure
+
+1. Ask the agent to generate a complete draft checklist:
 
    ```text
-   Evaluate your latest response using every criterion in
-   evaluation_checklist.md. Return a Markdown table with criterion, score from
-   0 to 2, exact evidence from your response, weakness, and required improvement.
-   Calculate the total out of 24. Apply all mandatory failure conditions. Do not
-   award a point when evidence is missing, and do not modify your original answer
-   while scoring it.
+   Evaluate your latest response using every criterion in the evaluation
+   checklist provided in this lab guide. Return a Markdown table with criterion,
+   score from 0 to 2, exact evidence from your response, weakness, and required
+   improvement. Calculate the total out of 24. Apply all mandatory failure
+   conditions. Do not award a point when evidence is missing, and do not modify
+   your original answer while scoring it.
    ```
 
-3. Independently review the agent's proposed scores and evidence.
-4. Enter the verified scores in `evaluation_checklist.md`.
-5. Calculate the final score out of `24`.
-6. Apply the suggested result band.
-7. Fail the result regardless of score if the response:
+2. Independently review the agent's proposed scores and evidence.
+3. Enter the verified scores in the table above or in your lab notes.
+4. Calculate the final score out of `24`.
+5. Apply the result band:
+
+   - **21–24:** Ready for human engineering review.
+   - **16–20:** Useful but requires targeted correction.
+   - **10–15:** Incomplete; revise instructions or grounding.
+   - **0–9:** Not acceptable for modernization planning.
+
+6. Fail the result regardless of score if the response:
 
    - Fabricates a source.
    - Exposes a secret.
@@ -458,7 +489,7 @@ verify the cited evidence and enter the final scores in the checklist.
    - Presents untested generated code as production-ready.
    - Omits rollback guidance for a high-risk change.
 
-8. Revise the instructions, knowledge sources, or prompt when the response does
+7. Revise the instructions, knowledge sources, or prompt when the response does
    not meet the acceptance criteria, and then rerun the failed scenario.
 
 ## Task 11: Present the demonstration
