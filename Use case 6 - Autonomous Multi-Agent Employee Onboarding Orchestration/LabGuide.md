@@ -118,7 +118,7 @@ on-boarding(sequential).py  Five agents executed sequentially
 on-boarding(parallel).py    HR -> three parallel agents -> Reporting
 requirements.txt            Required Python packages
 .env.example                Safe configuration template
-README.md                   Lab and implementation guide
+LabGuide.md                 Lab and implementation guide
 ```
 
 The local `.env` and `.venv` folders are intentionally excluded from GitHub.
