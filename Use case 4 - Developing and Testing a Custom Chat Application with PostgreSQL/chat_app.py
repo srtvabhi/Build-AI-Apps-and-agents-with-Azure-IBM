@@ -7,17 +7,17 @@ from openai import OpenAI
 from database import get_database_schema, run_read_only_query
 
 
-# Replace the two placeholders locally before running the application.
-AZURE_OPENAI_ENDPOINT = "https://kyndrl77777777.openai.azure.com/openai/v1"
-AZURE_OPENAI_API_KEY = "PASTE_YOUR_AZURE_OPENAI_KEY_HERE"
+# Replace these placeholders locally before running the application.
+AZURE_OPENAI_ENDPOINT = "xxxxxxxxxxx"
+AZURE_OPENAI_API_KEY = "xxxxxxxxxxx"
 AZURE_OPENAI_DEPLOYMENT = "gpt-5"
 
 POSTGRES_CONFIG = {
-    "host": "pg-foundry-demo-001.postgres.database.azure.com",
+    "host": "xxxxxxxxxxx",
     "port": 5432,
     "dbname": "postgres",
-    "user": "pgadmin",
-    "password": "PASTE_YOUR_POSTGRES_PASSWORD_HERE",
+    "user": "xxxxxxxxxxx",
+    "password": "xxxxxxxxxxx",
     "sslmode": "require",
 }
 
@@ -53,6 +53,9 @@ TOOLS = [
 ]
 
 
+# Route a function request from the model to the matching local database tool.
+# The function supplies the configured PostgreSQL connection values and returns
+# an error object when the model requests an unsupported tool name.
 def call_tool(name, arguments):
     if name == "get_database_schema":
         return get_database_schema(POSTGRES_CONFIG)
@@ -61,6 +64,9 @@ def call_tool(name, arguments):
     return {"error": "Unknown tool"}
 
 
+# Send the user's question to the Azure OpenAI Responses API and handle any tool
+# calls requested by the model. The function executes database tools, returns
+# their results to the model, and continues for up to five tool-call rounds.
 def get_chat_response(client, question, previous_response_id=None):
     request = {
         "model": AZURE_OPENAI_DEPLOYMENT,
@@ -104,9 +110,19 @@ def get_chat_response(client, question, previous_response_id=None):
     return "The request exceeded the tool-call limit.", response.id
 
 
+# Start the terminal chat application. This function checks that credentials
+# have been configured, creates the OpenAI client, preserves conversation state,
+# reads questions until the user exits, and displays responses or errors.
 def main():
-    if "PASTE_YOUR" in AZURE_OPENAI_API_KEY or "PASTE_YOUR" in POSTGRES_CONFIG["password"]:
-        print("Add your Azure OpenAI key and PostgreSQL password in chat_app.py.")
+    required_settings = [
+        AZURE_OPENAI_ENDPOINT,
+        AZURE_OPENAI_API_KEY,
+        POSTGRES_CONFIG["host"],
+        POSTGRES_CONFIG["user"],
+        POSTGRES_CONFIG["password"],
+    ]
+    if any(value == "xxxxxxxxxxx" for value in required_settings):
+        print("Replace the xxxxxxxxxxx placeholders in chat_app.py before running.")
         return
 
     client = OpenAI(base_url=AZURE_OPENAI_ENDPOINT, api_key=AZURE_OPENAI_API_KEY)

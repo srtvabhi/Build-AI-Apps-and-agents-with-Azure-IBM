@@ -14,6 +14,9 @@ BLOCKED_SQL = re.compile(
 )
 
 
+# Validate the model-generated SQL before it reaches PostgreSQL. This function
+# permits exactly one SELECT statement and rejects queries containing database-
+# modifying operations, then returns a normalized query without a trailing semicolon.
 def validate_read_only_sql(query):
     query = query.strip()
     statements = [item for item in sqlparse.parse(query) if str(item).strip()]
@@ -28,6 +31,9 @@ def validate_read_only_sql(query):
     return query.rstrip(";").strip()
 
 
+# Open a PostgreSQL connection using the supplied configuration. The connection
+# has a 10-second connection timeout and returns each result row as a dictionary
+# so callers can access values by column name.
 def connect(config):
     return psycopg.connect(
         **config,
@@ -36,6 +42,9 @@ def connect(config):
     )
 
 
+# Read the user-defined database schema from information_schema inside a read-only
+# transaction. The function groups each table's column names and data types into
+# a dictionary that the language model can use to construct valid SQL queries.
 def get_database_schema(config):
     sql = """
         SELECT table_schema, table_name, column_name, data_type
@@ -58,6 +67,9 @@ def get_database_schema(config):
     return {"tables": tables}
 
 
+# Validate and execute a SELECT query inside a read-only transaction. The function
+# applies a 10-second statement timeout, returns at most 100 rows, and reports
+# whether additional rows were omitted from the result.
 def run_read_only_query(config, query):
     query = validate_read_only_sql(query)
     limited_query = f"SELECT * FROM ({query}) AS result LIMIT 101"
