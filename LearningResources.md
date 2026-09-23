@@ -1,4 +1,4 @@
-# 🤖 Build-AI-Apps-and-agents-with-Azure-IBM
+# 🤖 Learning Resources 
 
 
 # 🧱 Module 1 — Foundations of AI & Agentic Architecture
@@ -333,7 +333,6 @@
 - 🪶 [Customize a model with fine-tuning](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning)
 - 🔥 [Import custom models with Fireworks — LoRA adapters](https://learn.microsoft.com/en-us/azure/foundry/how-to/fireworks/import-custom-models)
 
-> **Reference note:** Microsoft has strong first-party documentation for **LoRA**. I did not find an equally direct current Microsoft Foundry article dedicated specifically to **QLoRA**, so QLoRA should be treated as a supplementary concept here.
 
 ---
 
@@ -342,7 +341,6 @@
 - 🛠️ [Fine-tuning and model customization](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning)
 - 🧠 [Microsoft Foundry Models](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
 
-> **Reference note:** I did not find a current Microsoft Learn article that directly matches the PPT's standalone model-distillation topic. These are related Foundry/model-customization references rather than exact matches.
 
 ---
 
@@ -374,7 +372,6 @@
 - 🔎 [Azure AI Search](https://learn.microsoft.com/en-us/azure/search/)
 - 📚 [RAG and Generative AI — Azure AI Search](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
 
-> **Reference note:** These cover the underlying PostgreSQL + AI/RAG architecture. I did not find a single current Microsoft Learn page matching the exact PPT demo title.
 
 ---
 
@@ -495,7 +492,6 @@
 - 🎞️ [Microsoft Foundry Models](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
 - ☁️ [Microsoft Foundry documentation](https://learn.microsoft.com/en-us/azure/foundry/)
 
-> **Reference note:** I found Foundry/model documentation relevant to the platform, but not a single current Microsoft Learn page that exactly matches the PPT's Sora-2 workflow demo.
 
 ---
 
@@ -534,58 +530,3 @@ Central platform reference for Foundry, models, agents, IQ, evaluation, observab
 Central security and identity reference for AI agents.
 
 ---
-
-# ⚠️ Topics with Partial / Indirect Microsoft Matches
-
-| PPT topic | Match strength | Note |
-|---|:---:|---|
-| **LoRA** | 🟢 Strong | Direct Microsoft fine-tuning documentation exists |
-| **QLoRA** | 🟡 Partial | No equally direct current Foundry page found |
-| **Model Distillation** | 🟡 Partial | Related model customization references, but no exact standalone match found |
-| **PostgreSQL custom chat demo** | 🟡 Partial | PostgreSQL + RAG documentation exists, but not the exact PPT demo |
-| **Sora-2 workflow** | 🟡 Partial | Foundry/model documentation exists, but not an exact matching workflow page |
-
----
-
-# 🗺️ Suggested Study Sequence
-
-```text
-FOUNDATIONS
-    ↓
-Generative AI + AI Agents
-    ↓
-MICROSOFT FOUNDRY
-    ↓
-Models + Responses API + Agent Service
-    ↓
-MULTI-AGENT
-    ↓
-Agent Framework + Orchestration
-    ↓
-KNOWLEDGE
-    ↓
-Azure AI Search + RAG + Foundry IQ
-    ↓
-MODEL CUSTOMIZATION
-    ↓
-Fine-Tuning + LoRA + Synthetic Data
-    ↓
-ENTERPRISE SAFETY
-    ↓
-Evaluation + Red Teaming + Tracing
-    ↓
-SECURITY & GOVERNANCE
-    ↓
-Content Safety + Entra Agent ID + Agent 365
-```
-
----
-
-## 📌 Reference Quality Legend
-
-- 🟢 **Direct:** Microsoft reference closely matches the PPT topic.
-- 🔵 **Strong:** Microsoft reference covers the same technology/concept but may use different wording.
-- 🟡 **Partial:** Related Microsoft material exists, but there is no exact one-to-one current reference.
-- 🔗 **Multiple:** More than one Microsoft source is useful for the topic.
-
-> **Source note:** The module/topic structure above follows the uploaded training deck. The reference mapping is based on the Microsoft web research performed for this request.
