@@ -815,3 +815,91 @@ Then:
 ```text
 Submit
 ```
+
+---
+
+# 27. Post-fine-tuning results and key findings
+
+The following screenshots record the completed fine-tuning job, its training
+metrics, generated checkpoints, deployment, and an initial playground test.
+
+## Screenshot 1: Completed fine-tuning job
+
+![The Fine-tuning page showing the completed bold-tide-vfil supervised fine-tuning job](images/01-fine-tuning-job-completed.png)
+
+**Key finding:** The `bold-tide-vfil` supervised fine-tuning job completed
+successfully using the `gpt-4.1-mini-2025-04-14` base model. A completed job is
+ready for metric review, checkpoint inspection, and deployment validation.
+
+## Screenshot 2: Job details and final training metrics
+
+![The completed fine-tuning job details showing final training loss and token accuracy](images/02-job-details-and-metrics.png)
+
+**Key finding:** The job status is **Completed**, with a displayed final train
+loss of `0` and final train mean token accuracy of `1`. These are training-set
+metrics; they show a close fit to the training examples but do not by themselves
+prove that the model generalizes to unseen prompts.
+
+## Screenshot 3: Training configuration and automatic deployment
+
+![The fine-tuning job configuration showing its dataset, token usage, hyperparameters, and deployment status](images/03-training-configuration-and-deployment.png)
+
+**Key finding:** The run used `data.jsonl`, billed `5,000` training tokens, and
+used a batch size of `1`, `10` epochs, a learning-rate multiplier of `2`, and a
+recorded seed. No validation file is shown, so model quality should be checked
+with a separate evaluation dataset. Automatic deployment was successfully
+triggered as a Global Standard deployment.
+
+## Screenshot 4: Training loss and token accuracy
+
+![The Monitor tab showing loss and token accuracy across training steps](images/04-training-monitor-metrics.png)
+
+**Key finding:** Training loss falls rapidly toward zero while training token
+accuracy rises toward one across approximately 100 steps. The curves confirm
+that the model learned the training examples, but the absence of validation
+curves means overfitting and performance on unseen data still need to be tested.
+
+## Screenshot 5: Completion and evaluation logs
+
+![The latest fine-tuning logs showing successful completion, evaluation, billing, and automatic deployment](images/05-completion-logs.png)
+
+**Key finding:** The logs confirm that the job succeeded, the platform's model
+evaluation passed, a results file was created, `5,000` training tokens were
+billed, and automatic deployment was triggered. The generated `results.csv` can
+be downloaded for a more detailed review of the recorded training metrics.
+
+## Screenshot 6: Fine-tuning lifecycle logs
+
+![Earlier fine-tuning log events showing queueing, preprocessing, data import, GPU wait, and training start](images/06-training-lifecycle-logs.png)
+
+**Key finding:** The job progressed through enqueueing, training-file
+preprocessing, data import, the compute queue, and training execution. The log
+view contains `114` events, providing an audit trail for diagnosing wait time or
+training failures.
+
+## Screenshot 7: Generated checkpoints
+
+![The Checkpoints tab showing checkpoints at training steps 80, 90, and 100](images/07-training-checkpoints.png)
+
+**Key finding:** Foundry retained three checkpoints at steps `80`, `90`, and
+`100`. Each displayed checkpoint reports train loss `0` and train mean token
+accuracy `1`. Checkpoint selection should also consider performance on held-out
+evaluation prompts rather than selecting only the final or lowest-loss checkpoint.
+
+## Screenshot 8: Successful fine-tuned model deployment
+
+![The Deployments tab showing the successful Global Standard fine-tuned model deployment](images/08-fine-tuned-model-deployment.png)
+
+**Key finding:** A version `1` Global Standard deployment of the fine-tuned model
+was created successfully by the automatic fine-tuning deployment process. The
+deployment is now available for playground testing and controlled evaluation.
+
+## Screenshot 9: Playground test of the deployed model
+
+![The model playground testing the fine-tuned deployment with an MFA support question](images/09-fine-tuned-model-playground-test.png)
+
+**Key finding:** The playground is using the fine-tuned Global Standard
+deployment and returns an actionable response to an MFA account-access question.
+This confirms that the deployment responds successfully; response quality and
+the effect of fine-tuning should still be compared against the base model using
+the same held-out test prompts and evaluation criteria.
